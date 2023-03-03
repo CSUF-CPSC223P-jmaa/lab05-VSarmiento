@@ -20,6 +20,10 @@ def summation(n, term):
     """
     assert n >= 1
     "*** YOUR CODE HERE ***"
+    if(n <= 1):
+        return term(1)
+    return summation(n-1, term) + term(n)
+    
 
 
 def paths(m, n):
@@ -36,6 +40,10 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+    if(n == 1 or m == 1):
+        return 1
+    else:
+        return paths(m-1,n) + paths(m,n-1)
 
 
 def pascal(row, column):
@@ -51,7 +59,14 @@ def pascal(row, column):
     6
     """
     "*** YOUR CODE HERE ***"
-
+    if column == 0:
+        return 1
+    elif row == 0:
+        return 0
+    else:
+        top = pascal(row - 1, column)
+        topMin1 = pascal(row - 1, column - 1)
+        return top + topMin1
 
 def double_eights(n):
     """ Returns whether or not n has two digits in row that
@@ -75,3 +90,10 @@ def double_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if(n == 0):
+        return False
+    cur, last = n // 10, n % 10
+    if(cur % 10 == last):
+        return True
+    return double_eights(cur)
+    
